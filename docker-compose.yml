@@ -1,0 +1,44 @@
+version: '3'
+services:
+  todochecker-nginx:
+    container_name: "todochecker-nginx"
+    build:
+      context: ./docker/nginx
+    depends_on:
+      - todochecker-app
+    ports:
+      - 80:80
+    volumes:
+      - ./:/src
+
+  todochecker-app:
+    container_name: "todochecker-app"
+    build:
+      context: ./docker/php
+    depends_on:
+      - todochecker-mysql
+    ports:
+      - 5173:5173
+    volumes:
+      - ./:/src
+      - /src/node_modules
+      - /src/vendor
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+
+  todochecker-mysql:
+    image: mysql:8.0.28
+    command: --max_allowed_packet=32505856
+    container_name: "todochecker-mysql"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=todochecker
+    ports:
+      - 3306:3306
+
+  todochecker-redis:
+    image: redis:alpine
+    container_name: "todochecker-redis"
+    ports:
+      - 16379:6379
