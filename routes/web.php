@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// login
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+// dashboard
+Route::get('/dashboard',[DashboardController::class,'create'])->name('dashboard');
