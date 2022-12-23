@@ -1,4 +1,4 @@
-build:
+up:
 	docker compose build
 
 start:
