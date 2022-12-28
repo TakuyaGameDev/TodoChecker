@@ -1,0 +1,13 @@
+.header {
+    width:100%;
+    height:50px;
+    display:flex;
+    justify-content: space-between;
+}
+.logo {
+    margin:auto;
+}
+
+.user-info {
+    margin:auto;
+}
