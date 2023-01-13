@@ -24,7 +24,7 @@
     </head>
     <body class="antialiased">
         @yield('header')
-        <main>
+        <main class="page-contents">
             @yield('contents')
         </main>
     </body>

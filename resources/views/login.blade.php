@@ -22,7 +22,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
-        ログイン画面
-        <a href="{{ route('dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">To Dashboard</a>
+        <article>
+            <div id="app"></div>
+        </article>
     </body>
 </html>

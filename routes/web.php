@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -17,8 +18,11 @@ use App\Http\Controllers\DashboardController;
 
 
 // login
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('login');
-});
-// dashboard
-Route::get('/dashboard',[DashboardController::class,'create'])->name('dashboard');
+})->where('any','.*');
+
+Route::post('/login/confirm',[LoginController::class,'confirm'])->name('confirm');
+
+// // dashboard
+// Route::get('/dashboard',[DashboardController::class,'create'])->name('dashboard');

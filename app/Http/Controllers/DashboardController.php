@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function create(Request $request){
-        return view('dashboard')->with([
+    public function create(){
+        return [
             'title' => "dashboard",
             'screenName'=> "ダッシュボード",
-        ]);
+        ];
     }
 }
