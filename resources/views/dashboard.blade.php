@@ -8,6 +8,6 @@ dashboard
 
 @section('contents')
 <article>
-    {{$screenName}}
+    <div id="app"></div>
 </article>
 @endsection

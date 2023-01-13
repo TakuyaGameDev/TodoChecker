@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     plugins: [
+        vue(),
         // buildしたいjsファイルやcssファイルを作成したらこちらに追記していく
         laravel({
             input: ['resources/css/app.css', 

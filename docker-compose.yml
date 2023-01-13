@@ -26,19 +26,30 @@ services:
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
 
   todochecker-mysql:
-    image: mysql:8.0.28
-    command: --max_allowed_packet=32505856
-    container_name: "todochecker-mysql"
-    volumes:
-      - ./docker/mysql:/var/lib/mysql
+      image: mysql:8
+      container_name: todochecker-mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        TZ: ${TZ}
+      ports:
+          - ${DB_PORT}:3306
+      volumes:
+          - db-store:/var/lib/mysql
+          - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=todochecker
+      - PMA_HOST=todochecker-mysql
     ports:
-      - 3306:3306
+      - 4040:80
 
   todochecker-redis:
     image: redis:alpine
     container_name: "todochecker-redis"
     ports:
       - 16379:6379
+
+volumes:
+  db-store:
